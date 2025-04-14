@@ -12,7 +12,8 @@
 (defn clean [_]
   (b/delete {:path "target"}))
 
-(defn uber [_]
+(defn uber [args]
+  (println (str "args: " args))
   (clean nil)
   (b/copy-dir {:src-dirs   ["src" "resources"]
                :target-dir class-dir})

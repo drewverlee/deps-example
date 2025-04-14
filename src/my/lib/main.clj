@@ -1,6 +1,9 @@
 (ns my.lib.main
-  ;; any :require and/or :import clauses
+  (:require
+   [clojure.java.io    :as io]
+   [clojure.java.shell :as sh])
   (:gen-class))
 
 (defn -main [& args]
-  (println args))
+  (sh/with-sh-dir (io/resource "my")
+    (println (sh/sh "ls"))))

@@ -1,8 +1,3 @@
-{:paths ["src"] ;; project paths
- :deps {}       ;; project deps
-
- :aliases
- {;; Run with clj -T:build function-in-build
-  :prod  {:jvm-opts [""]}
-  :build {:deps {io.github.clojure/tools.build {:git/tag "v0.10.7" :git/sha "573711e"}}
+{:aliases
+ {:build {:deps {io.github.clojure/tools.build {:git/tag "v0.10.7" :git/sha "573711e"}}
           :ns-default build}}}
