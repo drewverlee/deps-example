@@ -6,14 +6,16 @@ As where the def value changes, because the def it self, it's body is still a si
 clojure -T:build uber
 #+end_src
 
-#+RESULTS:
+```
 time-def:  #inst "2025-04-17T22:57:48.199-00:00"
 time-macro: #inst "2025-04-17T22:57:48.199-00:00"
+```
 
 #+begin_src bash :results raw
 java -jar target/lib1-1.2.*
 #+end_src
 
-#+RESULTS:
+```
 time-def:  #inst "2025-04-17T22:57:53.021-00:00"
 time-macro: #inst "2025-04-17T22:57:48.199-00:00"
+```
