@@ -1,3 +1,4 @@
+```org
 At compile time a clojure macros body is read and evaled and the result is saved as the new body of the macro.
 We can see this play out in the example below as the JAR build time is saved into the macro, to be used when the jar runs. As where the def value changes, because the def it self, it's body is still a side-effect call to get the current time.
 
@@ -16,3 +17,4 @@ java -jar target/lib1-1.2.*
 #+RESULTS:
 time-def:  #inst "2025-04-17T22:57:53.021-00:00"
 time-macro: #inst "2025-04-17T22:57:48.199-00:00"
+```
