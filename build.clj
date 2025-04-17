@@ -13,11 +13,11 @@
   (b/delete {:path "target"}))
 
 (defn uber [args]
-  (println (str "args: " args))
   (clean nil)
   (b/copy-dir {:src-dirs   ["src" "resources"]
                :target-dir class-dir})
   (b/compile-clj {:basis      @basis
+                  :jvm-opts ["-Xmx1024m"]
                   :ns-compile '[my.lib.main]
                   :class-dir  class-dir})
   (b/uber {:class-dir class-dir

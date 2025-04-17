@@ -1,0 +1,30 @@
+* My Library
+
+** Building the JAR
+
+To build an executable JAR file:
+
+#+begin_src bash :results raw
+clojure -T:build uber
+#+end_src
+
+#+RESULTS:
+top level time-at-compile: Thu Apr 17 17:31:33 CDT 2025
+top level get-time: Thu Apr 17 17:31:33 CDT 2025
+
+
+This will create a standalone JAR file at =target/lib1-1.2.X-standalone.jar= (where X is the git revision count).
+
+** Running the JAR
+
+Once built, you can run the JAR with:
+
+#+begin_src bash :results raw
+java -jar target/lib1-1.2.*
+#+end_src
+
+#+RESULTS:
+top level time-at-compile: Thu Apr 17 17:31:33 CDT 2025
+top level get-time: Thu Apr 17 17:32:15 CDT 2025
+main time-at-compile: Thu Apr 17 17:31:33 CDT 2025
+top level get-time: Thu Apr 17 17:32:15 CDT 2025
