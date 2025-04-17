@@ -2,12 +2,10 @@
   (:gen-class))
 
 (defn get-time [] (java.util.Date.))
-(def current-time (get-time))
-(defmacro time-at-compile [] current-time)
+(def time-def (get-time))
+(defmacro time-macro [] time-def)
 
-(println (str "top level time-at-compile: " (time-at-compile)))
-(println (str "top level get-time: " current-time))
+(println "time-def: " time-def)
+(println  "time-macro:" (time-macro))
 
-(defn -main [& args]
-  (println (str "main time-at-compile: " (time-at-compile)))
-  (println (str "top level get-time: " current-time)))
+(defn -main [& args])

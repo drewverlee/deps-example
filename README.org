@@ -1,30 +1,19 @@
-* My Library
-
-** Building the JAR
-
-To build an executable JAR file:
+At compile time a clojure macros body is read and evaled and the result is saved as the new body of the macro.
+We can see this play out in the example below as the JAR build time is saved into the macro, to be used when the jar runs.
+As where the def value changes, because the def it self, it's body is still a side-effect call to get the current time.
 
 #+begin_src bash :results raw
 clojure -T:build uber
 #+end_src
 
 #+RESULTS:
-top level time-at-compile: Thu Apr 17 17:31:33 CDT 2025
-top level get-time: Thu Apr 17 17:31:33 CDT 2025
-
-
-This will create a standalone JAR file at =target/lib1-1.2.X-standalone.jar= (where X is the git revision count).
-
-** Running the JAR
-
-Once built, you can run the JAR with:
+time-def:  #inst "2025-04-17T22:57:48.199-00:00"
+time-macro: #inst "2025-04-17T22:57:48.199-00:00"
 
 #+begin_src bash :results raw
 java -jar target/lib1-1.2.*
 #+end_src
 
 #+RESULTS:
-top level time-at-compile: Thu Apr 17 17:31:33 CDT 2025
-top level get-time: Thu Apr 17 17:32:15 CDT 2025
-main time-at-compile: Thu Apr 17 17:31:33 CDT 2025
-top level get-time: Thu Apr 17 17:32:15 CDT 2025
+time-def:  #inst "2025-04-17T22:57:53.021-00:00"
+time-macro: #inst "2025-04-17T22:57:48.199-00:00"
