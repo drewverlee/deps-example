@@ -1,23 +1,31 @@
-In the results below, only the macro has the same
-value when the uberjar is built and when it's run.
+Without the "src/sql" on the deps path:
 
 #+begin_src bash :results raw
 clojure -T:build uber
 #+end_src
 
-- time-def:  #inst "2025-04-17T22:57:48.199-00:00"
-- time-macro: #inst "2025-04-17T22:57:48.199-00:00"
-- time-def-delay:  #inst "2025-04-18T12:34:34.193-00:00"
+#+RESULTS:
 
-#+begin_src bash :results raw
-java -jar target/lib1-1.2.*
-#+end_src
-
-- time-def:  #inst "2025-04-17T22:57:53.021-00:00"
-- time-macro: #inst "2025-04-17T22:57:48.199-00:00"
-- time-def-delay:  #inst "2025-04-18T12:34:40.222-00:00"
 
 
 #+begin_src bash :results raw
-clojure -T:build uber
+java -jar target/lib1-*
 #+end_src
+
+#+RESULTS:
+select *;
+
+and...
+
+#+begin_src bash :results raw
+clj -X lib.main/-main
+#+end_src
+
+#+RESULTS:
+
+Execution error (IllegalArgumentException) at lib.main/-main (main.clj:8).
+Cannot open <nil> as a Reader.
+
+Full report at:
+/tmp/clojure-3319625543381141006.edn
+[ Babel evaluation exited with code 1 ]
