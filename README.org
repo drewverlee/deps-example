@@ -8,10 +8,10 @@ clojure -T:build uber
 ls target
 #+end_src
 
-```
+#+begin_quote
 classes
 lib1-1.2.12-standalone.jar
-```
+#+end_quote
 
 2. run the uberjar
 
@@ -19,9 +19,9 @@ lib1-1.2.12-standalone.jar
 java -jar target/lib1-*
 #+end_src
 
-```
+#+begin_quote
 select *;
-```
+#+end_quote
 
 3. what happens if we invoke the function directly?
 
@@ -29,14 +29,14 @@ select *;
 clj -X lib.main/-main
 #+end_src
 
-```
+#+begin_quote
 Execution error (IllegalArgumentException) at lib.main/-main (main.clj:8).
 Cannot open <nil> as a Reader.
 
 Full report at:
 /tmp/clojure-3319625543381141006.edn
 [ Babel evaluation exited with code 1 ]
-```
+#+end_quote
 
 It fails because the file isn't on the classpath via paths... however, as we saw above :paths doesn't move files into the jar, what does is define what clojure files will get compiled.
 
