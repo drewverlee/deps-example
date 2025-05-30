@@ -1,31 +1,64 @@
-Without the "src/sql" on the deps path:
+1. Without the "src/sql" on the deps path but with it as a source in the copy-dir function, build the uberjar:
 
 #+begin_src bash :results raw
 clojure -T:build uber
 #+end_src
 
-#+RESULTS:
+#+begin_src bash :results raw
+ls target
+#+end_src
 
+```
+classes
+lib1-1.2.12-standalone.jar
+```
 
+2. run the uberjar
 
 #+begin_src bash :results raw
 java -jar target/lib1-*
 #+end_src
 
-#+RESULTS:
+```
 select *;
+```
 
-and...
+3. what happens if we invoke the function directly?
 
 #+begin_src bash :results raw
 clj -X lib.main/-main
 #+end_src
 
-#+RESULTS:
-
+```
 Execution error (IllegalArgumentException) at lib.main/-main (main.clj:8).
 Cannot open <nil> as a Reader.
 
 Full report at:
 /tmp/clojure-3319625543381141006.edn
 [ Babel evaluation exited with code 1 ]
+```
+
+It fails because the file isn't on the classpath via paths... however, as we saw above :paths doesn't move files into the jar, what does is define what clojure files will get compiled.
+
+#+begin_src clojure
+(b/compile-clj {:basis      @basis
+                :jvm-opts ["-Xmx1024m"]
+                :ns-compile '[lib.main]
+                :class-dir  class-dir})
+#+end_src
+
+then those compiled files are zipped into a jar here:
+
+#+begin_src clojure
+(b/uber {:class-dir class-dir
+         :uber-file uber-file
+         :basis     @basis
+         :main      'lib.main})
+#+end_src
+
+So, if you want something in the jar, through the "class-dir" you have to move it into the class-dir here:
+
+#+begin_src clojure
+(b/copy-dir {:src-dirs   ["src/sql"]
+             :target-dir class-dir})
+#+end_src
