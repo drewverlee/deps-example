@@ -14,13 +14,13 @@
 
 (defn uber [args]
   (clean nil)
-  (b/copy-dir {:src-dirs   ["src" "resources"]
+  (b/copy-dir {:src-dirs   ["src/sql"]
                :target-dir class-dir})
   (b/compile-clj {:basis      @basis
                   :jvm-opts ["-Xmx1024m"]
-                  :ns-compile '[my.lib.main]
+                  :ns-compile '[lib.main]
                   :class-dir  class-dir})
   (b/uber {:class-dir class-dir
            :uber-file uber-file
            :basis     @basis
-           :main      'my.lib.main}))
+           :main      'lib.main}))
